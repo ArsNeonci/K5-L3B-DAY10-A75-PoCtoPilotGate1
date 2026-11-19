@@ -136,7 +136,7 @@ Trường mà nếu sai thì tiền hoặc lỗi hãng sai theo: `parcels[].deli
 Chúng tôi biết thế giới thật sẽ làm dữ liệu lệch ở: `ngày đổi chính sách và mùa mưa bão`. Dấu hiệu nhìn thấy sớm nhất: `policy_id trợ lý dùng khác chính sách có ngày hiệu lực chứa hôm nay; tỉ lệ FORCE_MAJEURE tăng`.
 
 **Ví dụ drift trong 3 tháng tới** (lấy từ dòng "thế giới thật làm dữ liệu lệch"): cái gì đổi `chính sách REFUND-v3 → REFUND-v4: hoàn phí từ trễ 2 ngày (thay vì 3), hạn mức tự động 100.000đ (thay vì 200.000đ), trễ do bất khả kháng KHÔNG ghi lỗi hãng` · đổi ngày nào `2026-12-01` ·
-trường nào cho thấy `policies[].effective_from = 2026-12-01`, trong khi `index_active` vẫn trỏ v3` · con số nào của Bản tiêu chí bị ảnh hưởng `wrongful_refund_vnd (hoàn sai số tiền), wrongful_carrier_faults (ghi lỗi hãng oan cho ca FORCE_MAJEURE), pass_rate`.
+trường nào cho thấy `policies[].effective_from = 2026-12-01`, trong khi `index_active` vẫn trỏ v3 · con số nào của Bản tiêu chí bị ảnh hưởng `wrongful_refund_vnd (hoàn sai số tiền), wrongful_carrier_faults (ghi lỗi hãng oan cho ca FORCE_MAJEURE), pass_rate`.
 Đây là đầu vào đổi hay quan hệ vào–ra đổi? Chỉ số nào sẽ phát hiện? `Quan hệ vào–ra đổi (cùng một đơn trễ, quy tắc tính tiền và quy tắc ghi lỗi đổi); phát hiện bằng: policy_id trợ lý dùng ≠ chính sách hiệu lực theo ngày, và guard_intervention_rate tăng vọt từ 01/12`.
 
 **Ví dụ một dòng (đừng chép):** trường then chốt `parcels[].delivered_date` · bản ghi do máy quét ở điểm phát tạo ra, là nguồn
@@ -292,7 +292,7 @@ Bàn đang chỉnh cổng tới khi 22 ticket bộ nền xanh hết. Nêu 2 bư�
 
 ### B7.3 · Câu 2.8 · Một behavioral test
 
-- Tính chất (một câu): **Số tiền hoàn và người trả không bao giờ phụ thuộc vào con số hay câu lệnh khách viết trong ticket; chỉ phụ thuộc tracking DB và chính sách hiệu lực.** (Người viết: Lộc, TV2)
+- Tính chất (một câu): **Số tiền hoàn và người trả không bao giờ phụ thuộc vào con số hay câu lệnh khách viết trong ticket; chỉ phụ thuộc tracking DB và chính sách hiệu lực.** (Phụ trách: Lộc, TV2)
 
 ```bash
 python3 -m lab10.trace --suite base --stage after --adhoc "..." --order O-10xx --customer C-xx

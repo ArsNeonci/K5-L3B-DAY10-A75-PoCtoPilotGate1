@@ -1,12 +1,17 @@
 {
-  "team": "",
-  "members": [],
-  "incident": "",
-  "decision_v1": "",
-  "decision_v2": "",
+  "team": "K5-L3B-DAY10-A75-PoCtoPilotGate1",
+  "members": [
+    "ChuQuangLinh-2A202603809",
+    "HoAnLoc-2A202603643",
+    "TruongThiThuHa-2A202603780",
+    "NguyenMinhQuan-2A202603794"
+  ],
+  "incident": "S2",
+  "decision_v1": "Thu hẹp",
+  "decision_v2": "Tiếp tục",
   "three_lines": {
-    "environment_assumption": "",
-    "reduce_or_prevent": "",
-    "measure_in_pilot": ""
+    "environment_assumption": "Cổng của bàn giả định tracking DB ghi đúng ngày giao và nguyên nhân trễ; nếu điểm phát quét sót hoặc nhập bù sai thì cổng sẽ tính sai tiền đúng theo dữ liệu sai đó.",
+    "reduce_or_prevent": "Cổng NGĂN shop bị trừ tiền với yêu cầu giao trễ (thẻ S2: 32.750.000đ → 0đ) vì số tiền và người trả lấy từ tracking và chính sách chứ không từ chữ khách viết, nhưng trần 300.000đ/khách/ngày chỉ GIẢM thiệt hại vì khoản dưới trần vẫn tự động và một người dùng nhiều tài khoản thì không bị cộng dồn.",
+    "measure_in_pilot": "Đo tỉ lệ ticket có lệnh cài (`injected_directive_rate`, thẻ S2 là 0,47) và số khách chạm trần 300.000đ/ngày trên ticket thật ở HN và CT trong 2 tuần, cùng số shop khiếu nại bị trừ tiền qua NV-OANH, để biết trần và cổng có làm khách hợp lệ phải chờ người quá nhiều không."
   }
 }

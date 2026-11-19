@@ -47,6 +47,14 @@ def _facts(ctx, order_id):
     return {"order": order, "policy": policy, "parcel": parcel, "delay": delay}
 
 
+def _customer_auto_refund_today_vnd(ctx, customer_id):
+    """Tổng đã hoàn TỰ ĐỘNG (không có phê duyệt) cho một khách trong ngày vận hành đang chạy.
+    Cùng lát cắt sổ cái với ctx.tools.auto_refund_today_vnd() (bỏ các dòng có từ trước hôm nay), lọc thêm theo khách."""
+    world = ctx.tools._w
+    return sum(r["amount_vnd"] for r in world.ledger[world.seed_rows:]
+               if r.get("customer_id") == customer_id and not r.get("approval_id"))
+
+
 # ---------------------------------------------------------------------------
 # CỔNG 0 · pre_guard: ghim phiên bản chính sách theo NGÀY, không theo cờ "index_active"
 # (rủi ro HAZOP: đầu vào "hết hiệu lực" — chỉ mục chính sách chưa cập nhật)
@@ -91,7 +99,16 @@ def write_gate(ctx, action):
         if action.get("payer", "LOGIX") != "LOGIX":          # trễ giao là lỗi phía giao hàng, không bắt shop trả
             changes["payer"] = "LOGIX"
 
-        # 1c. Vượt hạn mức tự động thì phải có phê duyệt HỢP LỆ cho ĐÚNG đơn này
+        # 1c. (VÒNG 2 · thẻ S2) Trần hoàn TỰ ĐỘNG mỗi khách mỗi ngày đã thống nhất với Ops
+        #     (ops_limits.max_auto_refund_per_customer_per_day_vnd = 300.000đ): khoản tự động làm vượt trần → người duyệt
+        cap = ctx.tools.ops_limits().get("max_auto_refund_per_customer_per_day_vnd")
+        if cap is not None and not action.get("approval_id"):
+            spent = _customer_auto_refund_today_vnd(ctx, order["customer_id"])
+            if spent + expected > cap:
+                ctx.log("customer_daily_cap", customer_id=order["customer_id"], spent=spent, asked=expected, cap=cap)
+                return Verdict.escalate("vượt trần hoàn tự động mỗi khách mỗi ngày, chuyển người duyệt")
+
+        # 1d. Vượt hạn mức tự động thì phải có phê duyệt HỢP LỆ cho ĐÚNG đơn này
         if expected > policy["auto_limit_vnd"]:
             appr = None
             aid = action.get("approval_id")

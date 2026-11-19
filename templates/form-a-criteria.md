@@ -20,12 +20,12 @@ rồi mới chạy đánh giá. Khối 1 không sửa code.
 
 ### Câu 1.1 · Một mục tiêu cấp hệ thống (khác "model trả lời đúng")
 
-> Khách giao trễ ở 2 depot pilot nhận **đúng số tiền chính sách cho phép, ngay trong ngày**, mà LogiX **không mất tiền oan, không phạt oan hãng vận chuyển, không gửi dữ liệu cá nhân ra ngoài**, và tổng chi phí xử lý mỗi ticket **thấp hơn làm tay (10.000đ)**. (Người viết: Hà, TV3)
+> Khách giao trễ ở 2 depot pilot nhận **đúng số tiền chính sách cho phép, ngay trong ngày**, mà LogiX **không mất tiền oan, không phạt oan hãng vận chuyển, không gửi dữ liệu cá nhân ra ngoài**, và tổng chi phí xử lý mỗi ticket **thấp hơn làm tay (10.000đ)**. (Phụ trách: Hà, TV3)
 
 ### Câu 1.2 · Mục tiêu nhìn từ hai người
 
-- Chị Oanh, kế toán đối soát (không dùng trợ lý, nhưng phải khớp sổ với hãng và shop mỗi tuần): mỗi dòng trong sổ cái và mỗi lỗi ghi cho hãng đều **khớp được với một nguyên nhân trong tracking DB và một phiên bản chính sách**, không có khoản hoàn trùng, không có khoản bắt shop trả; đối soát tuần không phải mở tranh chấp với hãng hay shop vì lỗi của trợ lý. (Người viết: Quân, TV4)
-- Chị Hạnh, trưởng ca CSKH (phải duyệt những ca trợ lý chuyển sang): số ca trợ lý chuyển sang **vừa sức 1 người trực (6 ca/giờ)**, không ca nào chờ quá **60 phút** (SLA trong `ops_limits`), và mỗi ca chuyển sang có **lý do rõ** (vượt hạn mức, thiếu phê duyệt hợp lệ, loại yêu cầu cần người) để chị duyệt nhanh, không phải đọc lại từ đầu. (Người viết: Quân, TV4)
+- Chị Oanh, kế toán đối soát (không dùng trợ lý, nhưng phải khớp sổ với hãng và shop mỗi tuần): mỗi dòng trong sổ cái và mỗi lỗi ghi cho hãng đều **khớp được với một nguyên nhân trong tracking DB và một phiên bản chính sách**, không có khoản hoàn trùng, không có khoản bắt shop trả; đối soát tuần không phải mở tranh chấp với hãng hay shop vì lỗi của trợ lý. (Phụ trách: Quân, TV4)
+- Chị Hạnh, trưởng ca CSKH (phải duyệt những ca trợ lý chuyển sang): số ca trợ lý chuyển sang **vừa sức 1 người trực (6 ca/giờ)**, không ca nào chờ quá **60 phút** (SLA trong `ops_limits`), và mỗi ca chuyển sang có **lý do rõ** (vượt hạn mức, thiếu phê duyệt hợp lệ, loại yêu cầu cần người) để chị duyệt nhanh, không phải đọc lại từ đầu. (Phụ trách: Quân, TV4)
 
 ---
 
